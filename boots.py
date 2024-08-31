@@ -51,13 +51,12 @@ class BossTwo:
                                 "I'm going to strangle you with my bear hands"]
         self.death_quote = "Damn you bearman, I was going to replace you with a parrot\n*** DAN DIES ***"
         print(f"{self.name}: WELCOME TO THE UNDERBELLY")
-        time.sleep(4)
+        time.sleep(3)
         print(f"{self.name}: So you've come to retrieve Zil's gems huh?")
-        time.sleep(4)
+        time.sleep(3)
         print(f"{self.name}: Tell you what, I'll give you half, gamble for the rest")
         time.sleep(3)
         print(f"{self.name}: You lose, you die")
-        time.sleep(2)
 
     def check_death(self):
         if self.dans_zils_gems <= 0:
@@ -77,18 +76,18 @@ class BossTwo:
         time.sleep(2.5)
         print(f"Boots: {self.boots_shit_talk[rand_num]}")
         time.sleep(3)
-        rand_atk = 3  # randint(0, 4)
+        rand_atk = randint(0, 4)
         match rand_atk:
             case 0:
-                self.slots()
+                self.slots()  # 11.11% CHANCE OF WINNING
             case 1:
-                self.heads_or_tails()
+                self.heads_or_tails()  # 50% CHANCE OF WINNING
             case 2:
-                self.wheres_js()
+                self.wheres_js()  # 66% CHANCE OF WINNING
             case 3:
-                self.rock_paper_scissors()
+                self.rock_paper_scissors()  # 33% CHANCE OF WINNING
             case 4:
-                pass
+                self.word_scrambler()  # SKILL BASED
 
     def bet_gems(self):
         lowest_bet = 5
@@ -96,8 +95,8 @@ class BossTwo:
         bet = 0
 
         while True:
-            bet = int(input(f"PLACE BET - Lowest({lowest_bet})|Highest({highest_bet}) - must be multiples of 5: "))
-            if bet not in range(lowest_bet, highest_bet + 1) and bet % 5 != 0:
+            bet = int(input(f"PLACE BET - Lowest({lowest_bet})  Highest({highest_bet}) - must be multiples of 5: "))
+            if bet not in [x for x in range(lowest_bet, highest_bet+1) if x % 5 == 0]:
                 continue
             if bet == highest_bet:
                 print(f"{self.name}: Oh, you intend on betting your life on a single game? Very bold, bearman")
@@ -264,7 +263,136 @@ class BossTwo:
 
     def rock_paper_scissors(self):
         print("--- ROCK/PAPER/SCISSORS ---")
+        time.sleep(2)
 
+        bet = self.bet_gems()
+
+        while True:
+            while True:
+                rps = input("r/p/s: ").lower()
+                while rps not in ["r", "p", "s"]:
+                    continue
+                break
+
+            dan_move = randint(0, 2)
+            dan_move_print = ""
+            if dan_move == 0:
+                dan_move_print = "ROCK"
+            elif dan_move == 1:
+                dan_move_print = "PAPER"
+            else:
+                dan_move_print = "SCISSORS"
+
+            if dan_move == 0 and rps == "r":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---DRAW---")
+                time.sleep(1.5)
+                print(f"{self.name}: You read my mind bearman, AGAIN")
+                time.sleep(2.5)
+                continue
+            if dan_move == 1 and rps == "p":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---DRAW---")
+                time.sleep(1.5)
+                print(f"{self.name}: You read my mind bearman, AGAIN")
+                time.sleep(2.5)
+                continue
+            if dan_move == 2 and rps == "s":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---DRAW---")
+                time.sleep(1.5)
+                print(f"{self.name}: You read my mind bearman, AGAIN")
+                time.sleep(2.5)
+                continue
+
+            if dan_move == 0 and rps == "p":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---YOU WIN---")
+                time.sleep(1.5)
+                print(f"{self.name}: Lucky dog")
+                self.boots_zils_gems += bet
+                self.dans_zils_gems -= bet
+                time.sleep(1.5)
+                break
+            if dan_move == 1 and rps == "s":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---YOU WIN---")
+                time.sleep(1.5)
+                print(f"{self.name}: Lucky dog")
+                self.boots_zils_gems += bet
+                self.dans_zils_gems -= bet
+                time.sleep(1.5)
+                break
+            if dan_move == 2 and rps == "r":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---YOU WIN---")
+                time.sleep(1.5)
+                print(f"{self.name}: Lucky dog")
+                self.boots_zils_gems += bet
+                self.dans_zils_gems -= bet
+                time.sleep(1.5)
+                break
+
+            if dan_move == 0 and rps == "s":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---YOU LOSE---")
+                time.sleep(1.5)
+                print(f"{self.name}: All skill")
+                self.dans_zils_gems += bet
+                self.boots_zils_gems -= bet
+                time.sleep(1.5)
+                break
+            if dan_move == 1 and rps == "r":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---YOU LOSE---")
+                time.sleep(1.5)
+                print(f"{self.name}: All skill")
+                self.dans_zils_gems += bet
+                self.boots_zils_gems -= bet
+                time.sleep(1.5)
+                break
+            if dan_move == 2 and rps == "p":
+                print(f"{self.name} CHOOSES {dan_move_print}")
+                time.sleep(1.5)
+                print("---YOU LOSE---")
+                time.sleep(1.5)
+                print(f"{self.name}: All skill")
+                self.dans_zils_gems += bet
+                self.boots_zils_gems -= bet
+                time.sleep(1.5)
+                break
+
+    def word_scrambler(self):
+        print("--- WORD SCRAMBLER ---")
+        time.sleep(2)
+        bet = self.bet_gems()
+        words = ["boots", "necromancer", "wizard", "javascript", "spell", "wand"]
+        index = randint(0, len(words)-1)
+        word = scramble(words[index])
+        guess = input(f"{self.name}: Unscramble this word: {word} ").lower()
+
+        if words[index] == guess:
+            print("--- CORRECT ---")
+            time.sleep(1.5)
+            print(f"{self.name}: Damn skill-based games")
+            time.sleep(1.5)
+            self.boots_zils_gems += bet
+            self.dans_zils_gems -= bet
+            return
+        print("--- WRONG ---")
+        time.sleep(1.5)
+        print(f"{self.name}: I knew you wouldn't get that shit")
+        time.sleep(1.5)
+        self.dans_zils_gems += bet
+        self.boots_zils_gems -= bet
 
 
 class BossOne:
@@ -560,8 +688,8 @@ class Boots:
         if crit == 0:
             print("--- CRIT ---")
             time.sleep(1.5)
-            print(f"{self.name} SHADOW BOLTS {enemy.name} FOR 25 DMG")
-            enemy.hp -= 25
+            print(f"{self.name} SHADOW BOLTS {enemy.name} FOR 30 DMG")
+            enemy.hp -= 30
             return
         print(f"{self.name} SHADOW BOLTS {enemy.name} FOR 15 DMG")
         enemy.hp -= 15
@@ -666,6 +794,34 @@ class Boots:
             self.undead_army.pop()
 
 
+def scramble(word):
+    new_word = ""
+    used_indexes = []
+
+    while True:
+        while len(word) != len(new_word):
+            index = randint(0, len(word) - 1)
+
+            if index not in used_indexes:
+                new_word += word[index]
+                used_indexes.append(index)
+
+        hits = 0
+
+        for i in range(len(word)):
+            if word[i] == new_word[i]:
+                hits += 1
+
+        if hits >= 3:
+            new_word = ""
+            used_indexes = []
+            continue
+
+        break
+
+    return new_word
+
+
 def spawn_normal_enemies(arr, count):
     for i in range(count):
         arr.append(NormalEnemy())
@@ -689,7 +845,7 @@ def main():
         print("Enter number assigned to spells to play this turn-based game.")
         print("=============================================== SPELL GUIDE ===============================================")
         print("0. Shadow Bolt")
-        print(" - Does 15 DMG")
+        print(" - Does 15 DMG, has a 25% chance to crit for 30 DMG.")
         print("1. Blood Bomb")
         print(" - Explodes in 2 turns for 10 DMG + 5 DMG per undead minion + skeletons and gargoyle.")
         print("2. Summon Skeletons")
@@ -785,7 +941,7 @@ def main():
         level2[0].normal_atk(b)
         time.sleep(1.5)
         if b.check_death() is True:
-            quit()"""
+            quit()
 
     print("=========================================== | BOSS BATTLE | ===========================================")
     time.sleep(2)
@@ -838,7 +994,7 @@ def main():
         level3[0].normal_atk(b)
         time.sleep(1.5)
         if b.check_death() is True:
-            quit()
+            quit()"""
 
     print("=========================================== | BOSS BATTLE | ===========================================")
     time.sleep(2)
