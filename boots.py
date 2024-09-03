@@ -4,32 +4,47 @@ from random import randint
 
 class FinalBoss:
     def __init__(self):
-        self.name = ""
-        self.hp = 300
-        self.atk_quotes = []
-        self.death_quote = ""
-        print("")
+        self.name = "Allan the Unbeatable"
+        self.hp = 1000000
+        self.atk_quotes = ["You cannot stop me bearman",
+                           "Boot dev is returning to a simpler time, without you",
+                           "I cannot die, you cannot live"]
+        self.death_quote = None
+        self.weaknesses = None
+        self.godlike = True
+        print("Boots returns Zil's gems to the crab throne")
+        time.sleep(2.5)
+        print("Footsteps coming from behind catches Boots' attention")
+        time.sleep(2.5)
+        print(f"{self.name} dual wielding wands appears")
+        time.sleep(2.5)
+        print(f"{self.name}: You think I'm gonna let you get away with this after what you"
+              f"did in the server room?")
 
-    def check_death(self):
-        if self.hp <= 0:
-            return True
-        return False
-
-    def choose_random_atk(self, boots):
+    def atk(self, boots):
         print(f"{self.name}: {self.atk_quotes[randint(0, len(self.atk_quotes)-1)]}")
         time.sleep(3)
-        rand_atk = randint(0, 4)
-        match rand_atk:
-            case 0:
-                pass
-            case 1:
-                pass
-            case 2:
-                pass
-            case 3:
-                pass
-            case 4:
-                pass
+        self.heal()
+        time.sleep(2)
+        self.arcane_missiles(boots)
+
+    def heal(self):
+        print(f"{self.name} HEALS TO FULL HP")
+        time.sleep(2)
+        self.hp = 1000000
+
+    def arcane_missiles(self, boots):
+        print(f"--- {self.name} casts arcane missiles ---")
+        time.sleep(2)
+        print("--- MISSILE HITS BOOTS FOR 25 DMG")
+        time.sleep(1)
+        print("--- MISSILE HITS BOOTS FOR 25 DMG")
+        time.sleep(1)
+        print("--- MISSILE HITS BOOTS FOR 25 DMG")
+        time.sleep(1)
+        print("--- MISSILE HITS BOOTS FOR 25 DMG")
+        time.sleep(1)
+        boots.hp -= 100
 
 
 class BossTwo:
@@ -1009,23 +1024,15 @@ def main():
         b.handle_summon_skeletons(boss3)
         b.handle_summon_gargoyle(boss3)
 
-        if boss3.check_death() is True:
-            print(boss3.death_quote)
-            time.sleep(5)
-            break
         time.sleep(2)
-        boss3.choose_random_atk(b)
+        boss3.atk(b)
         time.sleep(1.5)
-        if boss3.check_death() is True:
-            print(boss3.death_quote)
-            time.sleep(5)
-            break
         if b.check_death() is True:
-            quit()
-
-    print("===LEVEL 3 COMPLETE!===")
-    time.sleep(2)
-    print("=====  | YOU WIN |  =====")
+            print("Grandmaster Lane: Is it done?")
+            time.sleep(2)
+            print(f"{boss3.name}: Ya it's done")
+            time.sleep(3)
+            print("=== GAME OVER ===")
 
 
 if __name__ == "__main__":
