@@ -878,7 +878,7 @@ def main():
             break
         break
 
-    """level1 = []
+    level1 = []
     print("---LEVEL 1---")
     time.sleep(1.5)
     spawn_normal_enemies(level1, 4)
@@ -1009,7 +1009,7 @@ def main():
         level3[0].normal_atk(b)
         time.sleep(1.5)
         if b.check_death() is True:
-            quit()"""
+            quit()
 
     print("=========================================== | BOSS BATTLE | ===========================================")
     time.sleep(2)
