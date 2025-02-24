@@ -74,7 +74,7 @@ class BossOne:
             print(f"==={boots.name} TAKES 15 DMG===")
             boots.hp -= 15
             return
-        print(f"==={self.name}: THROWS THE SANDAL TO THE {sandal_direction}===")
+        print(f"==={self.name}: THROWS THE SANDAL TO THE {print_direction}===")
         time.sleep(2)
         print(f"==={boots.name} DODGED THAT SHIT LIKE THE MATRIX===")
         time.sleep(2)
