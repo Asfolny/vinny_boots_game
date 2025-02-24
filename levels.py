@@ -1,8 +1,9 @@
 import time
+from random import randint
 from boss_one import BossOne
 from boss_two import BossTwo
 from final_boss import FinalBoss
-from enemies import NormalEnemy
+from enemies import *
 
 boss_battle = "=========================================== | BOSS BATTLE | ==========================================="
 tutorial = "================================================ TUTORIAL ================================================"
@@ -17,6 +18,32 @@ def spawn_normal_enemies(count):
     for _ in range(count):
         enemies.append(NormalEnemy())
     return enemies
+
+def spawn_enhanced_enemies(count):
+    enemies = []
+    for _ in range(count):
+        roll = randint(0, 6)
+        match roll:
+            case 0:
+                enemies.append(BearMonk())
+            case 1:
+                enemies.append(BearAssassin())
+            case _: 
+                enemies.append(NormalEnemy())
+    return enemies
+
+
+def spawn_enemies(level):
+    if level == 1:
+        return spawn_normal_enemies(4)
+    elif level == 2:
+        return spawn_enhanced_enemies(5)
+    elif level == 3:
+        return spawn_enhanced_enemies(6)
+    else:
+        return spawn_normal_enemies(3)
+
+
 
 def show_enemy_hp(enemy):
     width = len(enemy.name) + 7
@@ -48,7 +75,7 @@ def level_tutorial(b):
 def enemy_phase(b, level):
     print(f"---LEVEL {level}---")
     time.sleep(short)
-    enemies = spawn_normal_enemies(level + 3)
+    enemies = spawn_enemies(level)
     while len(enemies) != 0:
         time.sleep(1)
         show_enemy_hp(enemies[0])
@@ -61,29 +88,6 @@ def enemy_phase(b, level):
             continue
         time.sleep(short)
         enemies[0].normal_atk(b)
-        time.sleep(short)
-        if b.check_death() is True:
-            quit()
-
-def level_two_enemies(b):
-    level2 = []
-    print("---LEVEL 2---")
-    time.sleep(short)
-    spawn_normal_enemies(level2, 5)
-    while len(level2) != 0:
-        time.sleep(1)
-        show_enemy_hp(level2[0])
-        time.sleep(short)
-
-        b.take_turn(level2[0])
-
-        if level2[0].check_death() is True:
-            b.add_to_undead_army(level2[0])
-            level2.pop(0)
-            time.sleep(short)
-            continue
-        time.sleep(short)
-        level2[0].normal_atk(b)
         time.sleep(short)
         if b.check_death() is True:
             quit()
