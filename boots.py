@@ -74,7 +74,7 @@ class Boots:
                         f"---------------------------------------------------------\n"
                         f"| Boots HP: {self.hp} |                 | Undead Army Count {len(self.undead_army)} | \n"
                         f"Cast Spell: ")
-            if atk not in ("0", "1", "2", "3", "4", "5", "?"):
+            if atk not in ("0", "1", "2", "3", "4", "5", "?", "exit"):
                 continue
             
             match atk:
@@ -109,8 +109,8 @@ class Boots:
                     self.show_spells()
                     continue
                 case "exit":
-                    input("Are you sure you want to exit? (y/n)")
-                    if input().lower() == "y":
+                    yn = input("Are you sure you want to exit? (y/n)")
+                    if yn == "y":
                         print("Exiting...")
                         time.sleep(1.5)
                         quit()
