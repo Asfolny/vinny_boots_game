@@ -19,7 +19,7 @@ class FinalBoss:
         print(f"{self.name} dual wielding wands appears")
         time.sleep(2.5)
         print(f"{self.name}: You think I'm gonna let you get away with this after what you"
-              f"did in the server room?")
+              f" did in the server room?")
 
     def atk(self, boots):
         print(f"{self.name}: {self.atk_quotes[randint(0, len(self.atk_quotes)-1)]}")
