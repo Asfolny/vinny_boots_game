@@ -1,6 +1,5 @@
 import time
 from random import randint
-
 from enemies import UndeadNormalEnemy
 
 
@@ -10,8 +9,30 @@ class Boots:
         self.hp = 100
         self.undead_army = []
         self.blood_bomb_timer = 0
-        self.summon_skeletons_cd = 0
+        self.summon_skeletons_cd = 0 
         self.summon_gargoyle_cd = 0
+
+    def show_spells(self):
+        print("=============================================== SPELL GUIDE ===============================================")
+        print("0. Shadow Bolt")
+        print(" - Does 15 DMG, has a 25% chance to crit for 30 DMG.")
+        print("1. Blood Bomb")
+        print(" - Explodes in 2 turns for 10 DMG + 5 DMG per undead minion + skeletons and gargoyle.")
+        print("2. Summon Skeletons")
+        print(" - Does 20 DMG and summons two skeletons for the next 3 turns, skeletons deal 10 DMG each per turn.")
+        print("3. Summon Gargoyle")
+        print(" - Summons Gargoyle that lasts for 5 turns, does 25 DMG and heals Boots for 20HP every 2 turns.")
+        print("4. Sacrifice Undead")
+        print(" - Sacrifices one minion from undead army and heals Boots for 40HP.")
+        print("5. Army Nuke")
+        print(" - Sacrifices all undead minions, skeletons, and gargoyle to nuke the enemy for 25 DMG per minion.")
+
+    def take_turn(self, enemy):
+        self.choose_atk(enemy)
+        self.blood_bomb_detonate(enemy)
+        self.handle_summon_skeletons(enemy)
+        self.handle_summon_gargoyle(enemy)
+        
 
     def check_death(self):
         if self.hp <= 0:
@@ -53,7 +74,7 @@ class Boots:
                         f"---------------------------------------------------------\n"
                         f"| Boots HP: {self.hp} |                 | Undead Army Count {len(self.undead_army)} | \n"
                         f"Cast Spell: ")
-            if atk not in ("0", "1", "2", "3", "4", "5"):
+            if atk not in ("0", "1", "2", "3", "4", "5", "?"):
                 continue
             match atk:
                 case "0":
@@ -83,6 +104,8 @@ class Boots:
                     if len(self.undead_army) > 0 or self.summon_skeletons_cd != 0 or self.summon_gargoyle_cd != 0:
                         self.army_nuke(enemy)
                         break
+                case "?":
+                    self.show_spells()
                     continue
 
     def shadow_bolt(self, enemy):
@@ -195,32 +218,5 @@ class Boots:
         for i in range(len(self.undead_army)):
             self.undead_army.pop()
 
-
-def scramble(word):
-    new_word = ""
-    used_indexes = []
-
-    while True:
-        while len(word) != len(new_word):
-            index = randint(0, len(word) - 1)
-
-            if index not in used_indexes:
-                new_word += word[index]
-                used_indexes.append(index)
-
-        hits = 0
-
-        for i in range(len(word)):
-            if word[i] == new_word[i]:
-                hits += 1
-
-        if hits >= 3:
-            new_word = ""
-            used_indexes = []
-            continue
-
-        break
-
-    return new_word
 
 
