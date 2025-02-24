@@ -32,7 +32,7 @@ class Boots:
         self.blood_bomb_detonate(enemy)
         self.handle_summon_skeletons(enemy)
         self.handle_summon_gargoyle(enemy)
-        
+
 
     def check_death(self):
         if self.hp <= 0:
@@ -76,6 +76,7 @@ class Boots:
                         f"Cast Spell: ")
             if atk not in ("0", "1", "2", "3", "4", "5", "?"):
                 continue
+            
             match atk:
                 case "0":
                     self.shadow_bolt(enemy)
@@ -106,6 +107,13 @@ class Boots:
                         break
                 case "?":
                     self.show_spells()
+                    continue
+                case "exit":
+                    input("Are you sure you want to exit? (y/n)")
+                    if input().lower() == "y":
+                        print("Exiting...")
+                        time.sleep(1.5)
+                        quit()
                     continue
 
     def shadow_bolt(self, enemy):
