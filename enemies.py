@@ -4,7 +4,7 @@ from random import randint
 
 class NormalEnemy:
     def __init__(self):
-        self.names = ["Goblin", "Devilish Imp", "Evil Gnome", "Werewolf", "Ogre", "Bear Assassin"]
+        self.names = ["Goblin", "Devilish Imp", "Evil Gnome", "Werewolf", "Ogre", "Bear Assassin", "Bear Monk"]
         self.name = self.names[randint(0, len(self.names)-1)]
         self.hp = 30
         self.atk = 15

@@ -2,6 +2,33 @@ import time
 from random import randint
 
 
+def scramble(word):
+    new_word = ""
+    used_indexes = []
+
+    while True:
+        while len(word) != len(new_word):
+            index = randint(0, len(word) - 1)
+
+            if index not in used_indexes:
+                new_word += word[index]
+                used_indexes.append(index)
+
+        hits = 0
+
+        for i in range(len(word)):
+            if word[i] == new_word[i]:
+                hits += 1
+
+        if hits >= 3:
+            new_word = ""
+            used_indexes = []
+            continue
+
+        break
+
+    return new_word
+
 class BossTwo:
     def __init__(self):
         self.name = "Unethical Dan"
@@ -65,7 +92,8 @@ class BossTwo:
         bet = 0
 
         while True:
-            bet = int(input(f"PLACE BET - Lowest({lowest_bet})  Highest({highest_bet}) - must be multiples of 5: "))
+            user_input = input(f"PLACE BET - Lowest({lowest_bet})  Highest({highest_bet}) - must be multiples of 5: ")
+            bet = int(user_input) if user_input.isdigit() else 0
             if bet not in [x for x in range(lowest_bet, highest_bet+1) if x % 5 == 0]:
                 continue
             if bet == highest_bet:
