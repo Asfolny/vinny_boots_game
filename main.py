@@ -1,5 +1,6 @@
 import time
 
+from boots import Boots
 from boss_one import BossOne
 from boss_two import BossTwo
 from final_boss import FinalBoss
